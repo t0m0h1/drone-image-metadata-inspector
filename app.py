@@ -4,12 +4,14 @@ from utils.exif_utils import extract_exif
 from utils.vision_utils import analyse_image
 from utils.insight_engine import generate_insights
 
+
 UPLOAD_FOLDER = "static/uploads"
 ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png"}
 
 app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
+# Makes directory for uploads if it doesn't exist
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
@@ -20,6 +22,7 @@ def allowed_file(filename):
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 
 @app.route("/api/upload", methods=["POST"])
